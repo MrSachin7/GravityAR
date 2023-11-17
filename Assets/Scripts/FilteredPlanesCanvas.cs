@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class FilteredPlanesCanvas : MonoBehaviour
     [SerializeField] private Toggle horizontalPlaneToggle;
     [SerializeField] private Toggle bigPlaneToggle;
     [SerializeField] private Button startButton;
+
 
     public bool HorizontalPlaneToggle
     {
@@ -29,6 +31,7 @@ public class FilteredPlanesCanvas : MonoBehaviour
     }
 
     private ARFilteredPlanes arFilteredPlanes;
+   [SerializeField] private ParameterCanvasManager parameterCanvasManager;
 
 
     private void OnEnable()
@@ -75,6 +78,7 @@ public class FilteredPlanesCanvas : MonoBehaviour
 
     public void StartButtonClicked()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        parameterCanvasManager.EnableCanvas();
     }
 }
