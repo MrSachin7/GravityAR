@@ -31,7 +31,7 @@ public class FilteredPlanesCanvas : MonoBehaviour
     }
 
     private ARFilteredPlanes arFilteredPlanes;
-   [SerializeField] private ParameterCanvasManager parameterCanvasManager;
+   [SerializeField] private PlanetSelectionCanvasManager planetSelectionCanvasManager;
 
 
     private void OnEnable()
@@ -79,6 +79,6 @@ public class FilteredPlanesCanvas : MonoBehaviour
     public void StartButtonClicked()
     {
         gameObject.SetActive(false);
-        parameterCanvasManager.EnableCanvas();
+        planetSelectionCanvasManager.EnableCanvas();
     }
 }
