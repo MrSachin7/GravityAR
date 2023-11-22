@@ -8,8 +8,7 @@ public class PlanetSelectionCanvasManager : MonoBehaviour
 
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject addBallButton;
-
-    [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private PlaceObjects placeObjectsManager;
 
     private int dropdownValue = 0;
 
@@ -17,6 +16,10 @@ public class PlanetSelectionCanvasManager : MonoBehaviour
     public void EnableCanvas()
     {
         gameObject.SetActive(true);
+    }
+
+    public void FallButtonPressed(){
+       placeObjectsManager.FallAllObjects();
     }
 
     public void AddBallButtonPressed()
@@ -30,6 +33,7 @@ public class PlanetSelectionCanvasManager : MonoBehaviour
         dropdownValue = value;
     }
 
+
     public void AddBallPressedInsideCanvas()
     {
         panel.SetActive(false);
@@ -37,11 +41,13 @@ public class PlanetSelectionCanvasManager : MonoBehaviour
         Planet.PlanetName selectedPlanet = (Planet.PlanetName)dropdownValue;
         Planet planet = new Planet()
         {
+
             PlanetType = selectedPlanet
         };
+        Debug.Log("PlanetType: " + planet.PlanetType);
+        Debug.Log("GravityStrength: " + planet.GravityStrength);
 
-        spawnManager.SpawnObject(planet);
-
+        placeObjectsManager.AllowSpawn(planet);
 
     }
 

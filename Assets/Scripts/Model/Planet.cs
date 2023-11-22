@@ -21,6 +21,11 @@ public class Planet
         Moon
     }
 
+    public static Planet DefaultPlanet => new Planet()
+    {
+        PlanetType = PlanetName.Earth
+    };
+
 
     private PlanetName _planetType;
     public PlanetName PlanetType
