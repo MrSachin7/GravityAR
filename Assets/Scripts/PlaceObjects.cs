@@ -43,7 +43,13 @@ public class PlaceObjects : MonoBehaviour
             GameObject gameObject = kvp.Key;
             Planet planet = kvp.Value;
             gameObject.GetComponent<ConstantForce>().force = new Vector3(0, -planet.GravityStrength, 0);
+
+
         }
+
+        gameObjectToPlanet.Clear();
+        StartCoroutine(DestroyAfterSeconds(5));
+
     }
 
     private void OnFingerDown(EnhancedTouch.Finger finger)
@@ -82,6 +88,17 @@ public class PlaceObjects : MonoBehaviour
         EnhancedTouch.EnhancedTouchSupport.Disable();
         EnhancedTouch.Touch.onFingerDown -= OnFingerDown;
 
+    }
+
+    IEnumerator DestroyAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        foreach (var kvp in gameObjectToPlanet)
+        {
+            GameObject gameObject = kvp.Key;
+            Planet planet = kvp.Value;
+            Destroy(gameObject);
+        }
     }
 
 
